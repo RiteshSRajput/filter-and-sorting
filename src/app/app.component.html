@@ -1,0 +1,60 @@
+<div class="row mt-3">
+  <div class="col">
+    <h1>Sort & Filter Data</h1>
+
+    <div class="form-group">
+      <input
+        type="search"
+        class="form-control"
+        [(ngModel)]="filter"
+        placeholder="Filter by name or severity"
+      />
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+            <th
+              scope="col"
+              sortable="country_check_severity"
+              (sort)="onSort($event)"
+              width="150"
+            >
+              severity
+            </th>
+            <th
+              scope="col"
+              sortable="created"
+              (sort)="onSort($event)"
+              class="text-center"
+              width="150"
+            >
+              Created
+            </th>
+            <th
+              scope="col"
+              sortable="modified"
+              (sort)="onSort($event)"
+              class="text-center"
+              width="150"
+            >
+              Modified
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sorting | filter: filter">
+            <td>
+              {{ item.name }}
+            </td>
+            <td>{{ item.country_check_severity }}</td>
+            <td class="text-center">{{ item.created | date }}</td>
+            <td class="text-center">{{ item.modified | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
